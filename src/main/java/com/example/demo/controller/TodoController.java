@@ -31,6 +31,10 @@ public class TodoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<TodoDTO> getTodoById(@PathVariable Long id) {
+        // Validate if the id is valid
+        if (id == null || id <= 0) {
+            return ResponseEntity.badRequest().body(null);
+        }
         Optional<TodoDTO> todo = todoService.getTodoById(id);
         return todo.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }

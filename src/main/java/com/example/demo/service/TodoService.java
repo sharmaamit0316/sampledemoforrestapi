@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.client.ExternalResponse;
 import com.example.demo.dto.TodoDTO;
 import com.example.demo.mapper.TodoMapper;
 import com.example.demo.model.Todo;
@@ -54,6 +55,17 @@ public class TodoService {
             return todoMapper.todoToTodoDTO(updatedTodo);
         }
         return null;
+
+        /*// Call external API to get additional details
+        ExternalResponse externalResponse = externalApiClient.getExternalTodoDetails(id);
+
+        // Logic to update the TodoDTO with the external response data
+        TodoDTO updatedTodo = new TodoDTO();
+        updatedTodo.setTitle(todoDTO.getTitle());
+        updatedTodo.setDescription(todoDTO.getDescription());
+        //updatedTodo.setAdditionalInfo(externalResponse.getInfo());
+
+        return updatedTodo;*/
     }
 
     public boolean deleteTodoById(Long id) {
